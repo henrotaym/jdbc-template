@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sleep infinity
+    volumes:
+      - .:/workspaces/jdbc-template
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:9.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo
+      MYSQL_USER: student
+      MYSQL_PASSWORD: student
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ustudent", "-pstudent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  db-data:

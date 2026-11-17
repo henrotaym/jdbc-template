@@ -1,0 +1,22 @@
+{
+    "java.project.sourcePaths": [
+        "src/main/java"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "editor.formatOnSave": true,
+    "sqltools.connections": [
+        {
+            "name": "todo (MySQL du conteneur db)",
+            "driver": "MySQL",
+            "server": "db",
+            "port": 3306,
+            "database": "todo",
+            "username": "student",
+            "password": "student"
+        }
+    ]
+}
